@@ -1,0 +1,486 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: light;
+    --bg: #f4f6fc;
+    --surface: #ffffff;
+    --surface-strong: #f8fafc;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: rgba(99, 102, 241, 0.15);
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    --accent: #4f46e5;
+    --accent-strong: #4338ca;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent 40%),
+                linear-gradient(180deg, #f4f6fc 0%, #f8fafc 100%);
+    min-height: 100vh;
+    padding: 24px;
+    color: var(--text);
+    transition: background 0.3s ease;
+}
+
+body[data-theme='dark'] {
+    color-scheme: dark;
+    --bg: #0b0f19;
+    --surface: #111827;
+    --surface-strong: #1f2937;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    --accent: #6366f1;
+    --accent-strong: #818cf8;
+    --success: #10b981;
+    --danger: #f87171;
+    background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.15), transparent 40%),
+                linear-gradient(180deg, #0b0f19 0%, #111827 100%);
+}
+
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.app-shell {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Header */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+body[data-theme='dark'] .app-header {
+    background: rgba(17, 24, 39, 0.7);
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.app-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.hero-copy {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+/* Grids */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1.4fr 0.9fr;
+    gap: 24px;
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+/* Buttons & Badges */
+.btn {
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--accent-strong);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--surface-strong);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-secondary { background: rgba(99, 102, 241, 0.15); color: var(--accent); }
+.badge-success { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+
+/* Inputs & Forms */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.form-group input, .form-group select {
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface-strong);
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Progress Section */
+.progress-group {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.progress-ring__circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-ring__label {
+    font-size: 1.2rem;
+    font-weight: 800;
+    fill: var(--text);
+}
+
+/* List & Lists Items */
+.meal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 20px 0;
+}
+
+.meal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--surface-strong);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+}
+
+.meal-name { font-weight: 600; }
+.meal-meta { font-size: 0.85rem; color: var(--muted); }
+
+/* Stats Widgets */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.stat-card {
+    background: var(--surface-strong);
+    padding: 16px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.stat-value { font-size: 1.2rem; font-weight: 700; display: block; }
+.stat-label { font-size: 0.8rem; color: var(--muted); }
+
+/* Total Banner */
+.total-calories {
+    background: linear-gradient(135deg, var(--accent) 0%, #6366f1 100%);
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.total-calories .goal-text { opacity: 0.8; font-size: 0.9rem; font-weight: 400; }
+
+/* Custom Utilities */
+.search-filter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-pill {
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text);
+}
+
+.filter-pill.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    margin: 20px 0;
+}
+
+.timer-status {
+    text-align: center;
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.timer-status.active { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+.timer-status.inactive { background: rgba(239, 44, 44, 0.1); color: var(--danger); }
+
+.timer-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.insight-list { display: flex; flex-direction: column; gap: 12px; }
+.insight-item { display: flex; justify-content: space-between; padding: 12px; background: var(--surface-strong); border-radius: 12px; }
+
+.empty-state { text-align: center; color: var(--muted); padding: 24px; font-size: 0.95rem; }
+.toolbar { display: flex; gap: 12px; }
+
+/* Water Tracker widget style */
+.water-widget {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    padding: 16px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+@media(max-width: 968px) {
+    .dashboard { grid-template-columns: 1fr; }
+}
+
+
+/* Additional Premium Enhancements */
+.highlight-card {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-strong) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-stat-text {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+}
+
+.feedback-text {
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+    background: rgba(99, 102, 241, 0.06);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.inline-setting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inline-setting label {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+}
+
+.goal-input-minimal {
+    width: 90px;
+    padding: 6px 10px !important;
+    border-radius: 8px !important;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Premium Water Tracker Styling */
+.water-widget-premium {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(37, 99, 235, 0.08) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 18px;
+}
+
+.water-title {
+    font-weight: 700;
+    color: #2563eb;
+    font-size: 1rem;
+}
+
+body[data-theme='dark'] .water-title {
+    color: #60a5fa;
+}
+
+.water-progress {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+
+.water-bar-container {
+    width: 100%;
+    height: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 99px;
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.water-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.water-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-water-plus {
+    background: #2563eb;
+    color: white;
+    justify-content: center;
+    border-radius: 10px;
+}
+.btn-water-plus:hover {
+    background: #1d4ed8;
+}
+
+.btn-water-minus {
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    justify-content: center;
+    border-radius: 10px;
+}
+
+/* Custom Scrollbar for Meal List */
+.meal-list::-webkit-scrollbar {
+    width: 6px;
+}
+.meal-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.meal-list::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 99px;
+}
